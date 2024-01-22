@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "c4e74R8Cj384tShW8BgxjTapnuknvsHRDe7oL/HZaAM=",
+  "Source": "DeviceServer.Api",
+  "BasePath": "_content/DeviceServer.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
