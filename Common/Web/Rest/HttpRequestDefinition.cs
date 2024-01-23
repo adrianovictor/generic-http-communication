@@ -18,7 +18,7 @@ public class HttpRequestDefinition
     {
         Headers = new Dictionary<string, IList<string>>();
         Protocol = "http://";
-        Timeout = TimeSpan.FromSeconds(20);
+        Timeout = TimeSpan.FromSeconds(5);
         QueryString = string.Empty;
         StringContent = string.Empty;
     }

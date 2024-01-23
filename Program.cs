@@ -5,6 +5,8 @@ using DeviceServer.Api.Common.Web.ApiGateways.Services.interfaces;
 using DeviceServer.Api.Common.Web.ApiGateways.Services;
 using DeviceServer.Api.Common.Web.Rest.Interfaces;
 using DeviceServer.Api.Common.Web.Rest;
+using Microsoft.AspNetCore.Mvc;
+using DeviceServer.Api.Model.Request;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +16,29 @@ builder.Services.TryAddScoped<IHttpClient, StandardHttpClient>();
 builder.Services.TryAddScoped<IIntelbrasDeviceService, IntelbrasDeviceService>();
 builder.Services.TryAddScoped<IProxyApiGateway, ProxyApiGateway>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-app.MapGet("/", (IProxyApiGateway proxyApiGateway) =>
+if (app.Environment.IsDevelopment())
 {
-    var result = proxyApiGateway.SendCommand("http://192.168.0.2", "http://192.168.0.1", "3001", "/notifications", DeviceCommandType.OnlineMode);
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
-    return Results.Ok(new { result = "Ok" });
+app.MapGet("/", async ([FromServices] IProxyApiGateway proxyApiGateway, string deviceAddress, string serverAddress, string communicationPort, string notificationRoute) =>
+{
+    //var result = proxyApiGateway.SendCommand("http://192.168.0.2", "http://192.168.0.1", "3001", "/notifications", DeviceCommandType.OnlineMode);
+    var result = await proxyApiGateway.SendCommand(
+        deviceAddress: deviceAddress,
+        serverAddress: serverAddress,
+        port: communicationPort,
+        notificationRoute: notificationRoute,
+        commandType: DeviceCommandType.OnlineMode
+    );
+
+    return Results.Ok(result);
 });
 
 app.MapPost("/notifications", () => "Ok");
