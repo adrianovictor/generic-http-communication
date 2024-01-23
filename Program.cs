@@ -18,7 +18,7 @@ var app = builder.Build();
 
 app.MapGet("/", (IProxyApiGateway proxyApiGateway) =>
 {
-    var result = proxyApiGateway.SendCommand("192.168.0.2", "192.168.0.1", "3001", "/notifications", DeviceCommandType.OnlineMode);
+    var result = proxyApiGateway.SendCommand("http://192.168.0.2", "http://192.168.0.1", "3001", "/notifications", DeviceCommandType.OnlineMode);
 
     return Results.Ok(new { result = "Ok" });
 });

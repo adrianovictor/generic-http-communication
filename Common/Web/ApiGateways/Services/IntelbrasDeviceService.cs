@@ -16,9 +16,19 @@ public class IntelbrasDeviceService : BaseGateway, IIntelbrasDeviceService
 
     public async Task<string> GetConfigurationManager(string devideAddress, bool enable, string serverAddress, string communicationPort, string notificationRoute)
     {
-        return await Executor.TryAsync(async () => {
+        var parameters = new Dictionary<string, object>()
+        {
+            { "action", "setConfig" },
+            { "PictureHttpUpload.Enable", enable },
+            { "PictureHttpUpload.UploadServerList[0].Address", serverAddress },
+            { "PictureHttpUpload.UploadServerList[0].Port", communicationPort },
+            { "PictureHttpUpload.UploadServerList[0].Uploadpath", notificationRoute }
+        };
+
+        return await Executor.TryAsync(async () => 
+        {
             var data = await HttpClient.GetAsync(UrlsConfig.IntelbrasOperations.GetConfigManager(),
-                with => with.Host(devideAddress).Query(new { action = "setConfig" }));
+                with => with.Host(devideAddress).Query(parameters));
 
             return Deserialize(data.Payload, string.Empty);
         }, ex =>

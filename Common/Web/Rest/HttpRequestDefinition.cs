@@ -40,7 +40,7 @@ public class HttpRequestDefinition
 
     public HttpRequestDefinition Query(object parameters)
     {
-        var qs = parameters.ToDictionary();
+        var qs = parameters.GetType().Name == "Dictionary`2" ? (Dictionary<string, object>)parameters : parameters.ToDictionary();
 
         QueryString = qs.ToQuerystring();
 
