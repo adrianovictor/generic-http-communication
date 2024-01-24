@@ -10,7 +10,8 @@ using DeviceServer.Api.Model.Request;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient()
+    .ConfigurePrimaryHttpMessageHandler();
 builder.Services.TryAddScoped<IHttpClient, StandardHttpClient>();
 
 builder.Services.TryAddScoped<IIntelbrasDeviceService, IntelbrasDeviceService>();

@@ -22,11 +22,13 @@ public class StandardHttpClient : HttpClientBase
         var requestDefinition = new HttpRequestDefinition();
         buildeRequest(requestDefinition);
 
-        var client = _factory.CreateClient();
+        //var client = _factory.CreateClient();
+        var client = new HttpClient(new HttpClientHandler() { 
+            Credentials = new NetworkCredential("admin", "adr@3412"),
+            PreAuthenticate = true
+        });
         client.Timeout = requestDefinition.Timeout;
         var cts = new CancellationTokenSource();
-
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", $"{GlobalConstants.Credential.AdminUsername}:{GlobalConstants.Credential.AdminPassword}");
 
         try
         {
