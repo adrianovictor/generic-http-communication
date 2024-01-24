@@ -1,5 +1,6 @@
 ﻿using DeviceServer.Api.Common.Extensions;
 using DeviceServer.Api.Common.Web.Rest.Enum;
+using Newtonsoft.Json;
 
 namespace DeviceServer.Api.Common.Web.Rest;
 
@@ -45,7 +46,20 @@ public class HttpRequestDefinition
         QueryString = qs.ToQuerystring();
 
         return this;
-    } 
+    }
+
+    public HttpRequestDefinition JsonData(object data)
+    {
+        DataType = HttpRequestDataType.JSON;
+        StringContent = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+        return this;
+    }
+
+    public HttpRequestDefinition Credential(string username, string password)
+    {
+        return this;
+    }
 
     public HttpRequestDefinition Http()
     {

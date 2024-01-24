@@ -1,5 +1,7 @@
 ﻿using DeviceServer.Api.Common.Extensions;
+using DeviceServer.Api.Common.Utils;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace DeviceServer.Api.Common.Web.Rest;
 
@@ -24,9 +26,11 @@ public class StandardHttpClient : HttpClientBase
         client.Timeout = requestDefinition.Timeout;
         var cts = new CancellationTokenSource();
 
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", $"{GlobalConstants.Credential.AdminUsername}:{GlobalConstants.Credential.AdminPassword}");
+
         try
         {
-            var response = await client.SendAsync(requestMessage, cts.Token);
+            var response = await client.SendAsync(requestMessage);
             var responseAsText = await HttpResponseLogging.ToStringAsync(response);
 
             var payload = await response.Content.ReadAsStringAsync();
