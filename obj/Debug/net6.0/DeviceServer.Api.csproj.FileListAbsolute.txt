@@ -40,3 +40,9 @@ C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\n
 C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\obj\Debug\net6.0\DeviceServer.Api.sourcelink.json
+C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Desenvolvimento\A2SSolucoesDigitais\Poc\DoroTech\DeviceServer.Api\obj\Debug\net6.0\DeviceServer.Api.MvcApplicationPartsAssemblyInfo.cs

@@ -4,8 +4,8 @@ public static class GlobalConstants
 {
     public static class Credential
     {
-        public static string AdminUsername = "";
-        public static string AdminPassword = "";
+        public static string AdminUsername = "admin";
+        public static string AdminPassword = "adr@3412";
     }
 
     public static class Headers

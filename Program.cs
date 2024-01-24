@@ -6,12 +6,21 @@ using DeviceServer.Api.Common.Web.ApiGateways.Services;
 using DeviceServer.Api.Common.Web.Rest.Interfaces;
 using DeviceServer.Api.Common.Web.Rest;
 using Microsoft.AspNetCore.Mvc;
-using DeviceServer.Api.Model.Request;
+using System.Net;
+using DeviceServer.Api.Common.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient()
-    .ConfigurePrimaryHttpMessageHandler();
+builder.Services.AddHttpClient<StandardHttpClient>()
+    .ConfigureHttpMessageHandlerBuilder(configureBuilder =>
+    {
+        new HttpClientHandler()
+        {
+            Credentials = new NetworkCredential(GlobalConstants.Credential.AdminUsername, GlobalConstants.Credential.AdminPassword),
+            PreAuthenticate = true
+        };
+    });
+
 builder.Services.TryAddScoped<IHttpClient, StandardHttpClient>();
 
 builder.Services.TryAddScoped<IIntelbrasDeviceService, IntelbrasDeviceService>();
